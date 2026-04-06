@@ -1,4 +1,3 @@
-// ==================== src/api/axiosConfig.js ====================
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
@@ -44,7 +43,7 @@ api.interceptors.response.use(
 export default api;
 
 
-// ==================== src/api/authApi.js ====================
+// ── Auth ──────────────────────────────────────────────
 export const authApi = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
@@ -53,7 +52,7 @@ export const authApi = {
 };
 
 
-// ==================== src/api/productApi.js ====================
+// ── Products ──────────────────────────────────────────
 export const productApi = {
   getAll: (params) => api.get('/products', { params }),
   getById: (id) => api.get(`/products/${id}`),
@@ -65,7 +64,7 @@ export const productApi = {
 };
 
 
-// ==================== src/api/cartApi.js ====================
+// ── Cart ──────────────────────────────────────────────
 export const cartApi = {
   get: () => api.get('/cart'),
   addItem: (data) => api.post('/cart/add', data),
@@ -75,7 +74,7 @@ export const cartApi = {
 };
 
 
-// ==================== src/api/orderApi.js ====================
+// ── Orders ────────────────────────────────────────────
 export const orderApi = {
   place: (data) => api.post('/orders/place', data),
   getAll: (page = 0) => api.get(`/orders?page=${page}`),
@@ -85,14 +84,14 @@ export const orderApi = {
 };
 
 
-// ==================== src/api/paymentApi.js ====================
+// ── Payment ───────────────────────────────────────────
 export const paymentApi = {
   createOrder: (orderId) => api.post('/payment/create-order', { orderId }),
   verify: (data) => api.post('/payment/verify', data),
 };
 
 
-// ==================== src/api/wishlistApi.js ====================
+// ── Wishlist ──────────────────────────────────────────
 export const wishlistApi = {
   get: () => api.get('/wishlist'),
   add: (productId) => api.post(`/wishlist/add/${productId}`),
@@ -100,13 +99,13 @@ export const wishlistApi = {
 };
 
 
-// ==================== src/api/couponApi.js ====================
+// ── Coupon ────────────────────────────────────────────
 export const couponApi = {
   apply: (code, orderAmount) => api.post('/coupons/apply', { code, orderAmount }),
 };
 
 
-// ==================== src/api/profileApi.js ====================
+// ── Profile / Addresses ──────────────────────────────
 export const profileApi = {
   getAddresses: () => api.get('/addresses'),
   addAddress: (data) => api.post('/addresses', data),
